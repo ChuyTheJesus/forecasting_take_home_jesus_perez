@@ -3,8 +3,9 @@ FROM python:3.7.7-slim-buster
 RUN echo 'Updating Ubuntu packages.'
 RUN apt-get update
 
-# TODO: Install gcc, g++, build-essential) and Python development 
-#        tools (python-dev, python3-dev)
+RUN echo 'Adding Facebook prophet compiler dependencies'
+RUN apt-get install build-essential -y 
+RUN apt-get install python-dev -y && apt-get install python3-dev -y
 
 RUN echo 'Installing Python packages.'
 ADD requirements.txt /

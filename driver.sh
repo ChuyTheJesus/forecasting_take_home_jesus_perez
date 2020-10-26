@@ -30,7 +30,11 @@ elif
     [[ $COMMAND != "--hello" ]] &&
     [[ $COMMAND != "shell" ]] &&
     [[ $COMMAND != "-sh" ]] &&
-    [[ $COMMAND != "--shell" ]]
+    [[ $COMMAND != "--shell" ]] &&
+    [[ $COMMAND != "energy-forecast" ]] &&
+    [[ $COMMAND != "-ef" ]] &&
+    [[ $COMMAND != "--energy" ]]
+    
 then
   echo
   echo "Maybe you need some help:
@@ -105,6 +109,13 @@ shell | -sh | --shell)
   echo "Opening shell in $CONTAINER_TAG."
   docker run --interactive --tty \
     $CONTAINER_TAG /bin/sh
+  ;;
+
+energy-forecast | -ef | --energy)
+
+  echo
+  echo "Running scripts/energy_forecast.py in the $CONTAINER_TAG container."
+  docker run $CONTAINER_TAG python scripts/energy_forecast.py
   ;;
 
 esac
