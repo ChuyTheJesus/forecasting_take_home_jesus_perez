@@ -91,7 +91,7 @@ def main():
     # read file, split into pandas dataframe accordingly, 
     # and set cap on training set
     energyData = readFile()
-    trainFrame, testFrame = splitData(energyData, 0.95)
+    trainFrame, testFrame = splitData(energyData, 0.05)
 
     # Use training set to create facebook prophet model and forecast
     model, forecast = createForecastModel(trainFrame, 'linear')
