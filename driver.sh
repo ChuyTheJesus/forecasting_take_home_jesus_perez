@@ -33,7 +33,7 @@ elif
     [[ $COMMAND != "--shell" ]] &&
     [[ $COMMAND != "energy-forecast" ]] &&
     [[ $COMMAND != "-ef" ]] &&
-    [[ $COMMAND != "--energy" ]]
+    [[ $COMMAND != "--energy" ]] 
     
 then
   echo
@@ -52,7 +52,7 @@ jupyter,-j,--jupyter:                   Start the Jupyter server in the containe
 stop,-s,--stop:                         Stop the container.
 hello-world,-h,--hello:                 Run scripts/hello_world.py.
 shell,-sh,--shell:                      Open a shell in the container.
-energy-forecast,-ef,--energy            Run scripts/energy_forecast.py
+energy-forecast,-ef,--energy            Run scripts/energy_forecast.py"
   exit 1
 fi
 
@@ -117,6 +117,13 @@ energy-forecast | -ef | --energy)
   echo
   echo "Running scripts/energy_forecast.py in the $CONTAINER_TAG container."
   docker run $CONTAINER_TAG python scripts/energy_forecast.py
+  ;;
+
+create-notebook | -cn | --notebook)
+
+  echo
+  echo "Running convert command on scripts/energy_forecast.py in the $CONTAINER_TAG container."
+  docker run $CONTAINER_TAG cp scripts/energy_forecast.py notebooks/energy_forecast.ipynb
   ;;
 
 esac

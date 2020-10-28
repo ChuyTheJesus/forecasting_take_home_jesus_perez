@@ -27,12 +27,12 @@ def readFile():
         return energyData
     
 
-def splitData(data):
+def splitData(data, trainSetSize):
     '''
     Method to take data and split into train and test sets using scikit learn
     method
     '''
-    trainFrame, testFrame = train_test_split(data, test_size = 0.33, shuffle = False)
+    trainFrame, testFrame = train_test_split(data, test_size = trainSetSize, shuffle = False)
 
     return trainFrame, testFrame
 
@@ -47,8 +47,7 @@ def createForecastModel(data, modelGrowth):
     model.fit(data)
 
     # create future model to test on test frame
-    future = model.make_future_dataframe(3103)
-    future['cap'] = 4
+    future = model.make_future_dataframe(365)
     forecast = model.predict(future)
 
     return model, forecast
@@ -92,11 +91,10 @@ def main():
     # read file, split into pandas dataframe accordingly, 
     # and set cap on training set
     energyData = readFile()
-    energyData['cap'] = 4
-    trainFrame, testFrame = splitData(energyData)
+    trainFrame, testFrame = splitData(energyData, 0.95)
 
     # Use training set to create facebook prophet model and forecast
-    model, forecast = createForecastModel(trainFrame, 'logistic')
+    model, forecast = createForecastModel(trainFrame, 'linear')
     
     # Custom plot model, forecase, and test set to observe accuracy of model
     fig = customPlot(model, forecast, testFrame, 'Date', 'Fuel Price in dollars')
