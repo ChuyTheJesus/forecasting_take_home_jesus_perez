@@ -51,7 +51,8 @@ test,-t,--test:                         Run tests.
 jupyter,-j,--jupyter:                   Start the Jupyter server in the container.
 stop,-s,--stop:                         Stop the container.
 hello-world,-h,--hello:                 Run scripts/hello_world.py.
-shell,-sh,--shell:                      Open a shell in the container."
+shell,-sh,--shell:                      Open a shell in the container.
+energy-forecast,-ef,--energy            Run scripts/energy_forecast.py
   exit 1
 fi
 

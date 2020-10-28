@@ -70,3 +70,7 @@ tqdm>=4.36.1
 
 # Excel file read support
 xlrd>=1.0.0
+
+# additional misc. dependencies
+scikit-learn>=0.23.2
+ipynb-py-convert==0.4.6
